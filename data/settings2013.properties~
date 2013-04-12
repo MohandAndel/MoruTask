@@ -1,0 +1,11 @@
+#Fri Mar 22 16:35:49 AST 2013
+general.show_reminders.enabled=true
+theme.color.Priority.NEGATIVE=-16776961
+theme.color.Priority.HIGH=-20561
+date.use_start_time=true
+theme.color.Priority.MEDIUM=-16776961
+Date.date_Format=MMM/dd/yyyy
+Date.time_Format=hh\:mm aa
+theme.color.Priority.LOW=-12566464
+theme.color.Priority.TOP=-65536
+tasktable.tasks.selected.value=Untitled
