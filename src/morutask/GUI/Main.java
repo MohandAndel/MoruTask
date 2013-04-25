@@ -34,14 +34,12 @@ package morutask.GUI;
 
 import com.leclercb.commons.api.coder.exc.FactoryCoderException;
 import com.leclercb.commons.api.properties.PropertyMap;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
+
+import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.SwingUtilities;
-import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.*;
+
 import morutask.GUI.threads.reminder.ReminderThread;
 import morutask.models.NoteFactory;
 import morutask.models.TaskFactory;
@@ -71,7 +69,8 @@ public class Main {
                 @Override
                 public void run() {
                             try {
-                                javax.swing.UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");//info.getClassName());
+                                   javax.swing.UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+                                    //javax.swing.UIManager.setLookAndFeel("com.sun.java.swing.plaf.gtk.GTKLookAndFeel");//info.getClassName());
                             } catch (  ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException ex) {
                                 Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
                             }
@@ -96,7 +95,7 @@ public class Main {
                 
     private static void loadSettings(PropertyMap settings) {
 		try {
-			settings.load(new FileInputStream("data/settings.properties"));
+			settings.load(new FileInputStream("data" + File.separator + "settings.properties"));
 		} catch (Exception e) {
 			System.err.println("Cannot load property file");
 			throw new RuntimeException();
@@ -107,7 +106,7 @@ public class Main {
     {
         try {
             System.out.println("Saving Setting !!!");
-            SETTINGS.store(new FileOutputStream("data/settings.properties"), null);
+            SETTINGS.store(new FileOutputStream("data"+ File.separator +"settings.properties"), null);
         } catch (IOException ex) {
             Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -118,12 +117,12 @@ public class Main {
 		
 		try {
 			NoteFactory.getInstance().decodeFromXML(
-					new FileInputStream("data/notes.xml"));
+					new FileInputStream("data"+ File.separator +"notes.xml"));
 		} catch (FileNotFoundException e) {}
 		
 		try {
 			TaskFactory.getInstance().decodeFromXML(
-					new FileInputStream("data/tasks.xml"));
+					new FileInputStream("data"+ File.separator +"tasks.xml"));
 		} catch (FileNotFoundException e) {}
 	}
 	
@@ -134,9 +133,9 @@ public class Main {
 			TaskFactory.getInstance().cleanFactory();
                         
 		NoteFactory.getInstance().encodeToXML(
-				new FileOutputStream("data/notes.xml"));
+				new FileOutputStream("data"+ File.separator +"notes.xml"));
 		TaskFactory.getInstance().encodeToXML(
-				new FileOutputStream("data/tasks.xml"));
+				new FileOutputStream("data"+ File.separator +"tasks.xml"));
 	}
         
 }

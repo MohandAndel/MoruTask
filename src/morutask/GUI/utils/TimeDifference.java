@@ -33,6 +33,8 @@
 package morutask.GUI.utils;
 
 import com.leclercb.commons.api.utils.DateUtils;
+
+import java.lang.reflect.Field;
 import java.util.Calendar;
 import java.util.HashMap;
 import morutask.models.Task;
@@ -43,43 +45,44 @@ import morutask.models.Task;
  */
 public class TimeDifference {
     
-    public final static String ALL = "ALL";
-    public final static String TODAY = "TODAY";
-    public final static String TOMORROW = "TOMORROW";
-    public final static String THIS_WEEK = "THIS_WEEK";
-    public final static String LATER = "LATER" ;
+    public final static byte ALL = 0;
+    public final static byte TODAY = 1;
+    public final static byte TOMORROW = 2;
+    public final static byte THIS_WEEK = 3;
+    public final static byte LATER = 4 ;
     
-    private static HashMap<String,Integer> days = new HashMap<>();
-    
+    private static HashMap<Byte, Byte> days = new HashMap<>();
+    private static Field[] fields = TimeDifference.class.getFields();
+
     public static String GetTaskday(Task t)
     {
         int x = (int) DateUtils.getDiffInDays(Calendar.getInstance(), t.getStartDate(), false);
-        int i = 1 ;
+        byte i = 1 ;
         initMaps();
         
         if (!t.getModelStatus().isEndUserStatus())
         {
             i = -1;
         }
-        days.put(ALL, days.get(ALL) + i);
+        days.put(ALL,(byte) (days.get(ALL) + i ));
 
         if (x >= 7) {
-            days.put(LATER, days.get(LATER) + i);
-            return LATER;
+            days.put(LATER, (byte) (days.get(LATER) + i));
+            return getFieldName(LATER);
         }
 
         if (x > 1 ){
-            days.put(THIS_WEEK, days.get(THIS_WEEK) + i);
-            return THIS_WEEK;
+            days.put(THIS_WEEK, (byte) (days.get(THIS_WEEK) + i));
+            return getFieldName(THIS_WEEK);
         }
 
         if (x == 1) {
-            days.put(TOMORROW, days.get(TOMORROW) + i);
-            return TOMORROW;
+            days.put(TOMORROW, (byte) (days.get(TOMORROW) + i));
+            return getFieldName(TOMORROW);
         }
         if (x == 0) {
-            days.put(TODAY, days.get(TODAY) + i);
-            return TODAY;
+            days.put(TODAY, (byte) (days.get(TODAY) + i));
+            return getFieldName(TODAY);
         }
 
         return null;
@@ -90,23 +93,42 @@ public class TimeDifference {
     {
         if (days.isEmpty())
         {
-        days.put(ALL,0);
-        days.put(TODAY, 0);
-        days.put(TOMORROW, 0);
-        days.put(THIS_WEEK, 0);
-        days.put(LATER,0);
+            byte x = 0;
+        days.put(ALL,x);
+        days.put(TODAY,x);
+        days.put(TOMORROW,x);
+        days.put(THIS_WEEK,x);
+        days.put(LATER,x);
         }
     }
     
     public static int GetValue(String key)
     {
-        //initMaps();
-        if (days.containsKey(key))
+        Field f;
+
+        try
         {
-        return days.get(key);
+            f = TimeDifference.class.getField(key);
+
+        //initMaps();
+
+        if (days.containsKey(f.getByte(null)))
+        {
+        return days.get(f.getByte(null));
         }
-        
+
+        } catch(NoSuchFieldException | IllegalAccessException e)
+        {
+            e.printStackTrace();
+        }
+
         return 0;
+    }
+
+    public static String getFieldName(int i)
+    {
+         //Field[] fields = TimeDifference.class.getFields();
+        return fields[i].getName();
     }
     
 }
