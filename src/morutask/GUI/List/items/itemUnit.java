@@ -47,9 +47,9 @@ public class itemUnit<T> {
     {
         
     }
-    public itemUnit(T str , FilterItem f)
+    public itemUnit(T value , FilterItem f)
     {
-        this.dataitem = str;
+        this.dataitem = value;
         this.filter = f;
     }
     

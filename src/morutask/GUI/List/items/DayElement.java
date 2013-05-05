@@ -53,7 +53,7 @@ public class DayElement extends AbstractElement<Days> implements PropertyChangeL
         TaskFactory.getInstance().addPropertyChangeListener(Task.PROP_MODEL_STATUS,this);
         
         Scan();
-        setUnitItems(Days.values());
+        setItemsToDisplay(Days.values());
     }
     
     public void Scan()

@@ -51,7 +51,7 @@ public class RemindersElement extends AbstractElement<String> implements Propert
     {
         TaskFactory.getInstance().addPropertyChangeListener(Task.PROP_REMINDER,this);
         instance = ReminderList.getInstance();
-       setUnitItems(new String[] {"ReminderList"});
+       setItemsToDisplay(new String[]{"ReminderList"});
     }
 
     @Override

@@ -82,7 +82,7 @@ public class ElementListManager {
         return x;
     }
     
-    public itemUnit getUnitItems(int index)
+    public itemUnit getItemsInList(int index)
     {
         return itemsList.get(index);
     }

@@ -46,7 +46,7 @@ public class CompleteElement extends AbstractElement{
     public CompleteElement()
     {
         arraysitems = new String[] {"Completed tasks","UnCompleted tasks"};
-        setUnitItems(arraysitems);
+        setItemsToDisplay(arraysitems);
     }
 
     @Override

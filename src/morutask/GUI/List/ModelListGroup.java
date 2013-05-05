@@ -59,7 +59,7 @@ public class ModelListGroup extends AbstractListModel<itemUnit> {
     @Override
     public itemUnit getElementAt(int index) {
         
-        return ElementListManager.getInstance().getUnitItems(index);
+        return ElementListManager.getInstance().getItemsInList(index);
     }
     
     public void fireContentsChanged()

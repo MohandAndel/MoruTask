@@ -52,11 +52,11 @@ public abstract class AbstractElement<T> implements FilterItem{
         return items;
     }
 
-    public void setUnitItems(List<itemUnit> items) {
+    public void setItemsToDisplay(List<itemUnit> items) {
         this.items = items;
     }
     
-    public void setUnitItems(T [] item)
+    public void setItemsToDisplay(T[] item)
     {
         for (T str : item)
         {
