@@ -33,11 +33,15 @@
 package morutask.GUI.Table;
 
 import java.awt.Component;
+import java.util.EventObject;
 import javax.swing.AbstractCellEditor;
 import javax.swing.JTable;
 import javax.swing.table.TableCellEditor;
+
+import morutask.GUI.Actions.ActionEditTask;
 import morutask.GUI.EditTaskPanel;
 import morutask.GUI.Main;
+import morutask.GUI.utils.viewUtils;
 import morutask.models.Task;
 
 /**
@@ -64,8 +68,9 @@ public class TableEditor extends AbstractCellEditor implements TableCellEditor{
             return null;
         }
        
-        this.table.setRowHeight(row, EditTaskPanel.getinstance().getHeight());
-        return EditTaskPanel.getinstance();
+        this.table.setRowHeight(row, ActionEditTask.EditTask().getHeight());//EditTaskPanel.getinstance().getHeight());
+
+        return ActionEditTask.EditTask();//EditTaskPanel.getinstance();
     }
 
 
@@ -79,8 +84,13 @@ public class TableEditor extends AbstractCellEditor implements TableCellEditor{
     public void StopEditing()
     { 
         fireEditingStopped();
+        modelTable.setEdited(false);
         table.setRowHeight(tableRowhigh);
     }
-    
+
+    @Override
+    public boolean isCellEditable(EventObject e) {
+        return super.isCellEditable(e);    //To change body of overridden methods use File | Settings | File Templates.
     }
+}
 

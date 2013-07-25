@@ -42,6 +42,7 @@ import javax.swing.*;
 
 import morutask.GUI.threads.reminder.ReminderThread;
 import morutask.models.NoteFactory;
+import morutask.models.Task;
 import morutask.models.TaskFactory;
 
 /**
@@ -56,7 +57,7 @@ public class Main {
 	public static void main(String[] args) throws Exception {
         
 		SETTINGS = new PropertyMap();
-                
+
 		loadSettings(SETTINGS);
 		// Load models from files
 		loadModels();
@@ -93,7 +94,7 @@ public class Main {
     
     
                 
-    private static void loadSettings(PropertyMap settings) {
+    public static void loadSettings(PropertyMap settings) {
 		try {
 			settings.load(new FileInputStream("data" + File.separator + "settings.properties"));
 		} catch (Exception e) {
@@ -112,7 +113,7 @@ public class Main {
         }
     }
 	
-	private static void loadModels() throws FactoryCoderException {
+	public static void loadModels() throws FactoryCoderException {
 		
 		
 		try {

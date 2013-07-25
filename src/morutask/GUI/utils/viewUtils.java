@@ -48,7 +48,11 @@ public class viewUtils {
      
      private TaskTable taskTable;
      private GroupList groupList;
-     
+     private String viewtype;
+
+    public static String ViewType_Task = "TaskView";
+    public static String ViewType_Calendar = "CalendarView";
+
     private viewUtils()
     {
       
@@ -102,5 +106,15 @@ public class viewUtils {
       {
          return this.groupList.getSelecteditem();
       }
+
+    public String getCurrentViewType()
+    {
+         return this.viewtype;
+    }
+
+    public void setCurrentViewType(String view)
+    {
+        this.viewtype = view;
+    }
     
 }

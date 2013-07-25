@@ -32,15 +32,14 @@
  */
 package morutask.GUI.threads.reminder;
 
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
+import morutask.GUI.utils.MTSwingUtilities;
+import morutask.models.Task;
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import javax.swing.JButton;
-import javax.swing.JDialog;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import morutask.models.Task;
+import morutask.GUI.Timer.*;
 
 /**
  *
@@ -85,6 +84,7 @@ public class ReminderDialog extends JDialog{
             public void actionPerformed(ActionEvent e) {
                 task.setCompleted(true);
                 setVisible(false);
+                showtimer();
             }
         });
         
@@ -117,5 +117,24 @@ public class ReminderDialog extends JDialog{
         titleLabel.setText(t.getTitle());
         setVisible(true);
     }
-    
+
+    public void showtimer()
+    {
+        if(task.getTimer().getValue() !=0)
+        {
+            System.out.println("Timer is started");
+            //task.getTimer().start();
+                MTSwingUtilities.invokeLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            TimerTrayIcon timer = new TimerTrayIcon(task);
+                        } catch (AWTException e) {
+                            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                        }
+                    }
+                });
+                //TimerTrayIcon timer = new TimerTrayIcon(task);
+        }
+    }
 }

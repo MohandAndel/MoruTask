@@ -44,6 +44,7 @@ public class Timer implements Comparable<Timer> {
 		long second = now.getTimeInMillis() - this.startDate.getTimeInMillis();
 		second = second / 1000;
                 System.out.println("second ==> " + second);
+        System.out.println("Value ==> " + value);
 		return this.value - second;
 	}
 	

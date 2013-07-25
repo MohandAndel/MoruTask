@@ -37,6 +37,8 @@ import com.leclercb.commons.api.event.listchange.ListChangeListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import javax.swing.table.AbstractTableModel;
+
+import morutask.GUI.utils.viewUtils;
 import morutask.models.Task;
 import morutask.models.TaskFactory;
 
@@ -45,16 +47,18 @@ import morutask.models.TaskFactory;
  * @author mohand
  */
 public class modelTable extends AbstractTableModel implements ListChangeListener , PropertyChangeListener{
-    
+
+    private static boolean edited;
     public modelTable()
     {
+        edited = false;
         TaskFactory.getInstance().addListChangeListener(this);
         TaskFactory.getInstance().addPropertyChangeListener(this);
     }
 
     @Override
     public int getRowCount() {
-        
+
        return TaskFactory.getInstance().size();
     }
 
@@ -76,10 +80,21 @@ public class modelTable extends AbstractTableModel implements ListChangeListener
 
     @Override
     public boolean isCellEditable(int rowIndex, int columnIndex) {
-        
-        return true;
+
+            if (isEdited() )//|| viewUtils.getInstance().getTaskTable().getSelectedRow()==rowIndex)
+                return true;
+        return false;
+
     }
-    
+
+    public static boolean isEdited() {
+        return edited;
+    }
+
+    public static void setEdited(boolean edited) {
+        modelTable.edited = edited;
+    }
+
     @Override
     public void listChange(ListChangeEvent lce) {
         
@@ -104,7 +119,8 @@ public class modelTable extends AbstractTableModel implements ListChangeListener
         
         if ( evt.getSource() instanceof Task)
         {
-             fireTableDataChanged();
+             //fireTableDataChanged();
+            fireTableCellUpdated(viewUtils.getInstance().getTaskTable().getSelectedRow(),0);
         }
         
     }

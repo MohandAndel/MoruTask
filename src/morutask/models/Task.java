@@ -86,7 +86,7 @@ public class Task extends AbstractModelParent<Task> implements ModelNote, Proper
 	private String repeat;
 	private TaskRepeatFrom repeatFrom;
 	private TaskStatus status;
-	//private int length;
+	private int length;
 	private Timer timer;
 	private TaskPriority priority;
 	//private boolean star;
@@ -117,7 +117,8 @@ public class Task extends AbstractModelParent<Task> implements ModelNote, Proper
 		this.setTimer(new Timer());
 		this.setPriority(TaskPriority.LOW);
 		this.setNote(null);
-		
+        this.setLength(0);
+
 		this.getFactory().register(this);
 	}
 	
@@ -137,7 +138,8 @@ public class Task extends AbstractModelParent<Task> implements ModelNote, Proper
 		task.setTimer(this.getTimer());
 		task.setPriority(this.getPriority());
 		task.setNote(this.getNote());
-		
+        task.setLength(this.getLength());
+
 		// After all other setXxx methods
 		task.setOrder(this.getOrder());
 		task.addProperties(this.getProperties());
@@ -175,7 +177,8 @@ public class Task extends AbstractModelParent<Task> implements ModelNote, Proper
 		this.setTimer(bean.getTimer());
 		this.setPriority(bean.getPriority());
 		this.setNote(bean.getNote());
-		
+        this.setLength(bean.getLength());
+
 		// Set completed at the end (repeat)
 		this.setCompleted(bean.isCompleted());
 		
@@ -198,7 +201,8 @@ public class Task extends AbstractModelParent<Task> implements ModelNote, Proper
 		bean.setTimer(this.getTimer());
 		bean.setPriority(this.getPriority());
 		bean.setNote(this.getNote());
-		
+        bean.setLength(this.getLength());
+
 		// Set completed at the end (repeat)
 		bean.setCompleted(this.isCompleted());
 		bean.setCompletedOn(this.getCompletedOn());
@@ -476,6 +480,21 @@ public class Task extends AbstractModelParent<Task> implements ModelNote, Proper
 		this.note = note;
 		this.updateProperty(PROP_NOTE, oldNote, note);
 	}
+
+    public int getLength() {
+        return this.length;
+    }
+
+    public void setLength(int length) {
+        CheckUtils.isPositive(length);
+
+        if (!this.checkBeforeSet(this.getLength(), length))
+            return;
+
+        int oldLength = this.length;
+        this.length = length;
+        this.updateProperty(PROP_LENGTH, oldLength, length);
+    }
 	
 	
 	@Override

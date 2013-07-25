@@ -55,12 +55,14 @@ public class StringValueTimer implements StringValue {
 		long time = ((Timer) value).getTimerValue() / 60;
 		long hour = time / 60;
 		long minute = time % 60;
-                
-		return (hour < 10 ? "0" : "")
+
+
+        return (hour < 10 ? "0" : "")
 				+ hour
 				+ ":"
 				+ (minute < 10 ? "0" : "")
-				+ minute;
+				+ minute
+               ;
 	}
 	
 }

@@ -33,42 +33,29 @@
 package morutask.GUI;
 
 import com.leclercb.commons.api.coder.exc.FactoryCoderException;
-import morutask.GUI.Sort.TaskSortType;
-import java.awt.BorderLayout;
-import java.awt.FlowLayout;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
-import java.io.FileNotFoundException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextField;
-import javax.swing.RowFilter;
-import javax.swing.SortOrder;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
-import org.jdesktop.swingx.JXFrame;
-import org.jdesktop.swingx.sort.TableSortController;
 import morutask.GUI.Actions.ActionAddTask;
 import morutask.GUI.Actions.ActionDeleteTask;
 import morutask.GUI.List.GroupList;
 import morutask.GUI.List.items.itemUnit;
 import morutask.GUI.Sort.TaskComparable;
+import morutask.GUI.Sort.TaskSortType;
 import morutask.GUI.Table.Filter.TaskFilter;
 import morutask.GUI.Table.TaskTable;
+import morutask.GUI.utils.ComponentFactory;
 import morutask.GUI.utils.FormBuildHelper;
 import morutask.GUI.utils.viewUtils;
+import org.jdesktop.swingx.JXFrame;
+import org.jdesktop.swingx.JXSearchField;
+import org.jdesktop.swingx.sort.TableSortController;
+
+import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import java.awt.*;
+import java.awt.event.*;
+import java.io.FileNotFoundException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -76,7 +63,7 @@ import morutask.GUI.utils.viewUtils;
  */
 public class MainFrame extends JXFrame{
     
-    private JTextField searchField;
+    private JXSearchField searchField;
     private JComboBox sortComboBox;
     private JButton addButton;
     private JButton deleteButton;
@@ -86,18 +73,46 @@ public class MainFrame extends JXFrame{
     private JPanel panel;
     private TableSortController rowsorter;
     private FormBuildHelper formBuildHelper;
+    private JSplitPane splitPane;
+    //private TasksCalendarPanel tasksCalendarPanel;
+
+
     public MainFrame()
     {
         this.initialize();
-        
-        
+
+
+//        final JTabbedPane tabbedPane = new JTabbedPane();
+//
+//        tabbedPane.addTab("Standard View", splitPane);
+//        tabbedPane.addTab("Calendar View",tasksCalendarPanel);
+//
+//        tabbedPane.addChangeListener(new ChangeListener() {
+//            @Override
+//            public void stateChanged(ChangeEvent changeEvent) {
+//
+//                if(tabbedPane.getTitleAt(tabbedPane.getSelectedIndex())=="Standard View")
+//
+//                     viewUtils.getInstance().setCurrentViewType(viewUtils.ViewType_Task);
+//
+//                else
+//                    viewUtils.getInstance().setCurrentViewType(viewUtils.ViewType_Calendar);
+//
+//                System.out.println(viewUtils.getInstance().getCurrentViewType());
+//            }
+//        });
+
+        //panel.add(tabbedPane,BorderLayout.CENTER);
+        getContentPane().add(splitPane,BorderLayout.CENTER);
+
     }
     
     private void initialize()
     {
         setLayout(new BorderLayout(10, 10));
-        setSize(950, 750);
-        setTitle("Moru Task");
+        setSize(950, 550);
+
+        setTitle("MoruTask");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
             @Override
@@ -132,9 +147,14 @@ public class MainFrame extends JXFrame{
         scrollPane.setViewportView(taskTable);
         
         rowsorter = (TableSortController) viewUtils.getInstance().getTaskTable().getRowSorter();
-        
-        
-        searchField = new JTextField("Search");
+
+        splitPane = ComponentFactory.createThinJSplitPane(JSplitPane.HORIZONTAL_SPLIT);
+        splitPane.setRightComponent(scrollPane);
+        splitPane.setLeftComponent(groupList);
+        splitPane.setDividerSize(10);
+        splitPane.setOneTouchExpandable(true);
+
+        searchField = new JXSearchField("Search");
         searchField.setColumns(20);
         searchField.addKeyListener(new KeyAdapter() {
 
@@ -193,9 +213,11 @@ public class MainFrame extends JXFrame{
         panel.add(searchField);
         
         add(panel,BorderLayout.PAGE_START);
-        
-        add(groupList,BorderLayout.LINE_START);
-        add(scrollPane,BorderLayout.CENTER);
+         add(splitPane,BorderLayout.CENTER);
+         //tasksCalendarPanel = new TasksCalendarPanel();
+        //add(tasksCalendarPanel,BorderLayout.CENTER);
+        //add(groupList,BorderLayout.LINE_START);
+        //add(scrollPane,BorderLayout.CENTER);
         
     }
     

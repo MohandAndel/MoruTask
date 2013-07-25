@@ -33,9 +33,13 @@
 package morutask.GUI.Table;
 
 import java.awt.Component;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 import javax.swing.table.TableCellRenderer;
+
+import morutask.GUI.Actions.ActionEditTask;
 import org.jdesktop.swingx.JXTable;
 import org.jdesktop.swingx.sort.TableSortController;
 import morutask.GUI.EditTaskPanel;
@@ -56,6 +60,7 @@ public class TaskTable extends JXTable implements TaskTableView{
     private TableSortController tableSorter;
     private TaskFilter taskFilter;
     private int tableRowhigh;
+
     public TaskTable()
     {
         tableRowhigh = Main.getSettings().getIntegerProperty("tasktable.row.high");
@@ -75,9 +80,29 @@ public class TaskTable extends JXTable implements TaskTableView{
 
             @Override
             public void valueChanged(ListSelectionEvent e) {
+
+                System.out.println("Changed !!");
                 setRowHeight(tableRowhigh);
+                modeltable.setEdited(false);
             }
         });
+
+        //****
+        addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (e.getClickCount() >= 2)
+                {
+                    System.out.println("Double Click");
+                    TaskTable source = (TaskTable) e.getSource();
+
+                     setSelectedTaskAndStartEdit(source.getSelectedTask());
+
+                }
+            }
+        });
+
+        //***
     }
 
     @Override
@@ -94,6 +119,7 @@ public class TaskTable extends JXTable implements TaskTableView{
     public void setSelectedTaskAndStartEdit(Task task) {
         
         this.setSelectedTask(task);
+        modeltable.setEdited(true);
 		
                 int i = TaskFactory.getInstance().getIndexOf(task);
 
@@ -102,11 +128,13 @@ public class TaskTable extends JXTable implements TaskTableView{
 				if (row != -1) {
 					if (this.editCellAt(row, 0)) {
 						Component editor =this.getEditorComponent();
-                                                
+
 						editor.requestFocusInWindow();
- 
+
 					}
 				}
+
+        //modeltable.setEdited(false);
 
     }
 
@@ -127,7 +155,7 @@ public class TaskTable extends JXTable implements TaskTableView{
         
         this.getSelectionModel().setValueIsAdjusting(true);
         this.getSelectionModel().clearSelection();
-        
+        //System.out.println("selectedTask");
         
         int index = this.getRowSorter().convertRowIndexToView(TaskFactory.getInstance().getIndexOf(tasks));
         
@@ -136,7 +164,7 @@ public class TaskTable extends JXTable implements TaskTableView{
             this.getSelectionModel().addSelectionInterval(index, index);
             this.getSelectionModel().setValueIsAdjusting(false);
             
-            this.setRowHeight(index, EditTaskPanel.getinstance().getHeight());
+            this.setRowHeight(index, ActionEditTask.EditTask().getHeight());//EditTaskPanel.getinstance().getHeight());
             this.scrollRowToVisible(index);
             
         }
@@ -147,6 +175,7 @@ public class TaskTable extends JXTable implements TaskTableView{
     public Task getTask(int row) {
 		return TaskFactory.getInstance().get(row);
 	}
+
     
     
     

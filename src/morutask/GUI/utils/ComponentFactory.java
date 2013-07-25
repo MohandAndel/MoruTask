@@ -32,10 +32,27 @@
  */
 package morutask.GUI.utils;
 
+import javax.swing.*;
+import javax.swing.plaf.basic.BasicSplitPaneUI;
+import java.awt.*;
+
 /**
  *
  * @author mohand
  */
 public class ComponentFactory {
+
+
+    public static JSplitPane createThinJSplitPane(int orientation) {
+        JSplitPane splitPane = new JSplitPane(orientation);
+
+        splitPane.setContinuousLayout(true);
+        splitPane.setDividerSize(1);
+        ((BasicSplitPaneUI) splitPane.getUI()).getDivider().setBorder(
+                BorderFactory.createMatteBorder(0, 1, 0, 0, new Color(0xa5a5a5)));
+        splitPane.setBorder(BorderFactory.createEmptyBorder());
+
+        return splitPane;
+    }
     
 }

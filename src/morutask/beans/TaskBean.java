@@ -97,7 +97,10 @@ public class TaskBean extends AbstractModelParentBean {
 	
 	@XStreamAlias("note")
 	private String note;
-	
+
+//    @XStreamAlias("length")
+//    private int length;
+
         
 	public TaskBean() {
 		this((ModelId) null);
@@ -119,6 +122,7 @@ public class TaskBean extends AbstractModelParentBean {
 		this.setTimer(new Timer());
 		this.setPriority(TaskPriority.LOW);
 		this.setNote(null);
+        this.setLength(0);
 	}
 	
 	public TaskBean(TaskBean bean) {
@@ -136,6 +140,8 @@ public class TaskBean extends AbstractModelParentBean {
 		this.setTimer(bean.getTimer());
 		this.setPriority(bean.getPriority());
 		this.setNote(bean.getNote());
+        this.setLength(bean.getLength());
+
 	}
 	
 	@Override
@@ -245,5 +251,13 @@ public class TaskBean extends AbstractModelParentBean {
 	public void setNote(String note) {
 		this.note = note;
 	}
+
+    public int getLength() {
+        return this.length;
+    }
+
+    public void setLength(int length) {
+        this.length = length;
+    }
 	
 }
