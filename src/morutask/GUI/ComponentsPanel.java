@@ -32,7 +32,7 @@ public class ComponentsPanel extends JPanel {
         Component[] components = component.getComponents();
         for(Component comp : components)
         {
-            if(comp instanceof JComponent)
+            if(comp instanceof JComponent && tipText != null)
             {
                 ((JComponent) comp).setToolTipText(tipText);
             }

@@ -35,6 +35,7 @@ package morutask.GUI;
 import com.leclercb.commons.api.coder.exc.FactoryCoderException;
 import morutask.GUI.Actions.ActionAddTask;
 import morutask.GUI.Actions.ActionDeleteTask;
+import morutask.GUI.Actions.ActionReportBug;
 import morutask.GUI.List.GroupList;
 import morutask.GUI.List.items.itemUnit;
 import morutask.GUI.Sort.TaskComparable;
@@ -82,27 +83,7 @@ public class MainFrame extends JXFrame{
         this.initialize();
 
 
-//        final JTabbedPane tabbedPane = new JTabbedPane();
-//
-//        tabbedPane.addTab("Standard View", splitPane);
-//        tabbedPane.addTab("Calendar View",tasksCalendarPanel);
-//
-//        tabbedPane.addChangeListener(new ChangeListener() {
-//            @Override
-//            public void stateChanged(ChangeEvent changeEvent) {
-//
-//                if(tabbedPane.getTitleAt(tabbedPane.getSelectedIndex())=="Standard View")
-//
-//                     viewUtils.getInstance().setCurrentViewType(viewUtils.ViewType_Task);
-//
-//                else
-//                    viewUtils.getInstance().setCurrentViewType(viewUtils.ViewType_Calendar);
-//
-//                System.out.println(viewUtils.getInstance().getCurrentViewType());
-//            }
-//        });
 
-        //panel.add(tabbedPane,BorderLayout.CENTER);
         getContentPane().add(splitPane,BorderLayout.CENTER);
 
     }
@@ -112,7 +93,9 @@ public class MainFrame extends JXFrame{
         setLayout(new BorderLayout(10, 10));
         setSize(950, 550);
 
-        setTitle("MoruTask");
+        this.initMenuBar();
+
+        setTitle("MoruTask 0.3 Alpha");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
             @Override
@@ -214,11 +197,32 @@ public class MainFrame extends JXFrame{
         
         add(panel,BorderLayout.PAGE_START);
          add(splitPane,BorderLayout.CENTER);
-         //tasksCalendarPanel = new TasksCalendarPanel();
-        //add(tasksCalendarPanel,BorderLayout.CENTER);
-        //add(groupList,BorderLayout.LINE_START);
-        //add(scrollPane,BorderLayout.CENTER);
         
+    }
+
+    private void initMenuBar()
+    {
+
+        JMenuBar menuBar = new JMenuBar();
+        JMenuItem menuItemRB = new JMenuItem("Report Bug");
+        menuItemRB.addActionListener(new ActionReportBug("https://sourceforge.net/p/morutask/bugs/?source=navbar"));
+
+        JMenuItem menuItemFR = new JMenuItem("Report Feature Requests");
+        menuItemFR.addActionListener(new ActionReportBug("https://sourceforge.net/p/morutask/feature-requests/?source=navbar"));
+
+        JMenuItem menuItemLC = new JMenuItem("Leave a comment ");
+        menuItemLC.addActionListener(new ActionReportBug("https://sourceforge.net/projects/morutask/reviews/new"));
+
+
+        JMenu menu = new JMenu("About");
+
+        menu.add(menuItemRB);
+        menu.add(menuItemFR);
+        menu.add(menuItemLC);
+        menuBar.add(menu);
+
+        setJMenuBar(menuBar);
+
     }
     
 }

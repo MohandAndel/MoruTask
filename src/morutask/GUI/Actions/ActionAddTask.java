@@ -33,6 +33,7 @@
 package morutask.GUI.Actions;
 
 import java.awt.event.ActionEvent;
+import java.util.Calendar;
 import javax.swing.AbstractAction;
 import morutask.GUI.Main;
 import morutask.GUI.utils.viewUtils;
@@ -56,7 +57,8 @@ public class ActionAddTask extends AbstractAction{
     {
       
       Task T =  TaskFactory.getInstance().create(Main.getSettings().getStringProperty("tasktable.tasks.selected.value"));//"Defult title");
-      
+        T.setStartDate(Calendar.getInstance());
+
       if (title != null)
       {
           T.setTitle(title);

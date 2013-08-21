@@ -32,9 +32,9 @@
  */
 package morutask.GUI.Table;
 
-import java.awt.Component;
-import javax.swing.JLabel;
-import javax.swing.JTable;
+import java.awt.*;
+import javax.swing.*;
+
 import org.jdesktop.swingx.renderer.DefaultTableRenderer;
 import morutask.GUI.Main;
 import morutask.models.Task;
@@ -53,7 +53,7 @@ public class TableRender extends DefaultTableRenderer{
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
         
         JLabel label =(JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-        
+
         label.setOpaque(true);
         Task task = (Task) value;
         label.setForeground(Main.getSettings().getColorProperty("theme.color.Priority."+task.getPriority().toString()));
@@ -61,9 +61,4 @@ public class TableRender extends DefaultTableRenderer{
         return label;
         
     }
-    
-   
-    
-    
-    
 }
