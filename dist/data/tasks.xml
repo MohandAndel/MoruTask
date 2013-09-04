@@ -1,0 +1,60 @@
+<tasks>
+  <task>
+    <modelid isnew="true">d5be7c89-1cdc-436c-aa0d-30407fcdc566</modelid>
+    <modelreferenceids class="java.util.Collections$UnmodifiableMap"/>
+    <modelstatus>TO_UPDATE</modelstatus>
+    <modelcreationdate>1377119250549</modelcreationdate>
+    <modelupdatedate>1377119253650</modelupdatedate>
+    <title>New Task</title>
+    <order>0</order>
+    <properties/>
+    <completed>false</completed>
+    <startdate>1377119250555</startdate>
+    <startdatereminder>0</startdatereminder>
+    <hasreminder>false</hasreminder>
+    <repeatfrom>DUE_DATE</repeatfrom>
+    <status>NONE</status>
+    <length>0</length>
+    <timer startdate="">0</timer>
+    <priority>LOW</priority>
+    <note></note>
+  </task>
+  <task>
+    <modelid isnew="true">87fe99bf-a597-4ead-a1c3-bc2363aa2055</modelid>
+    <modelreferenceids class="java.util.Collections$UnmodifiableMap"/>
+    <modelstatus>TO_UPDATE</modelstatus>
+    <modelcreationdate>1377119255221</modelcreationdate>
+    <modelupdatedate>1377119255222</modelupdatedate>
+    <title>New Task</title>
+    <order>0</order>
+    <properties/>
+    <completed>false</completed>
+    <startdate>1377119255222</startdate>
+    <startdatereminder>0</startdatereminder>
+    <hasreminder>false</hasreminder>
+    <repeatfrom>DUE_DATE</repeatfrom>
+    <status>NONE</status>
+    <length>0</length>
+    <timer startdate="">0</timer>
+    <priority>LOW</priority>
+  </task>
+  <task>
+    <modelid isnew="true">94aecc8c-8db4-4395-8b25-8a5dee4fc9bc</modelid>
+    <modelreferenceids class="java.util.Collections$UnmodifiableMap"/>
+    <modelstatus>TO_UPDATE</modelstatus>
+    <modelcreationdate>1377119261034</modelcreationdate>
+    <modelupdatedate>1377119261035</modelupdatedate>
+    <title>New Task</title>
+    <order>0</order>
+    <properties/>
+    <completed>false</completed>
+    <startdate>1377119261035</startdate>
+    <startdatereminder>0</startdatereminder>
+    <hasreminder>false</hasreminder>
+    <repeatfrom>DUE_DATE</repeatfrom>
+    <status>NONE</status>
+    <length>0</length>
+    <timer startdate="">0</timer>
+    <priority>LOW</priority>
+  </task>
+</tasks>

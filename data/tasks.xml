@@ -1,0 +1,82 @@
+<tasks>
+  <task>
+    <modelid isnew="true">9606b7d6-2d6c-443e-802c-c4283a260948</modelid>
+    <modelreferenceids class="java.util.Collections$UnmodifiableMap"/>
+    <modelstatus>TO_UPDATE</modelstatus>
+    <modelcreationdate>1378209368583</modelcreationdate>
+    <modelupdatedate>1378209370796</modelupdatedate>
+    <title>New Task</title>
+    <order>0</order>
+    <properties/>
+    <completed>false</completed>
+    <startdate>1378209368591</startdate>
+    <startdatereminder>0</startdatereminder>
+    <hasreminder>false</hasreminder>
+    <repeatfrom>DUE_DATE</repeatfrom>
+    <status>NONE</status>
+    <length>0</length>
+    <timer startdate="">0</timer>
+    <priority>LOW</priority>
+    <note></note>
+  </task>
+  <task>
+    <modelid isnew="true">317c8039-2e92-4ac1-bf26-2c4d0d3d4017</modelid>
+    <modelreferenceids class="java.util.Collections$UnmodifiableMap"/>
+    <modelstatus>TO_UPDATE</modelstatus>
+    <modelcreationdate>1378209372031</modelcreationdate>
+    <modelupdatedate>1378209374728</modelupdatedate>
+    <title>New Task</title>
+    <order>0</order>
+    <properties/>
+    <completed>false</completed>
+    <startdate>1378209372033</startdate>
+    <startdatereminder>0</startdatereminder>
+    <hasreminder>false</hasreminder>
+    <repeatfrom>DUE_DATE</repeatfrom>
+    <status>NONE</status>
+    <length>0</length>
+    <timer startdate="">0</timer>
+    <priority>MEDIUM</priority>
+    <note></note>
+  </task>
+  <task>
+    <modelid isnew="true">daa23ef3-8193-48b2-9ea3-de7bede3d02d</modelid>
+    <modelreferenceids class="java.util.Collections$UnmodifiableMap"/>
+    <modelstatus>TO_UPDATE</modelstatus>
+    <modelcreationdate>1378212060526</modelcreationdate>
+    <modelupdatedate>1378212072403</modelupdatedate>
+    <title>New Task</title>
+    <order>0</order>
+    <properties/>
+    <completed>false</completed>
+    <startdate>1378384860528</startdate>
+    <startdatereminder>0</startdatereminder>
+    <hasreminder>false</hasreminder>
+    <repeatfrom>DUE_DATE</repeatfrom>
+    <status>NONE</status>
+    <length>0</length>
+    <timer startdate="">0</timer>
+    <priority>LOW</priority>
+    <note></note>
+  </task>
+  <task>
+    <modelid isnew="true">714a4f39-22c3-4824-ae66-0639c1f61d0b</modelid>
+    <modelreferenceids class="java.util.Collections$UnmodifiableMap"/>
+    <modelstatus>TO_UPDATE</modelstatus>
+    <modelcreationdate>1378212086123</modelcreationdate>
+    <modelupdatedate>1378212095509</modelupdatedate>
+    <title>New Task</title>
+    <order>0</order>
+    <properties/>
+    <completed>false</completed>
+    <startdate>1378298486124</startdate>
+    <startdatereminder>0</startdatereminder>
+    <hasreminder>false</hasreminder>
+    <repeatfrom>DUE_DATE</repeatfrom>
+    <status>NONE</status>
+    <length>0</length>
+    <timer startdate="">0</timer>
+    <priority>LOW</priority>
+    <note></note>
+  </task>
+</tasks>
