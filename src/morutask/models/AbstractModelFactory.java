@@ -67,7 +67,6 @@ public abstract class AbstractModelFactory<OM extends Model, OMB extends ModelBe
 	
 	private ListChangeSupport listChangeSupport;
 	private PropertyChangeSupport propertyChangeSupport;
-	
 	protected List<M> models;
 	
 	protected AbstractModelFactory(
@@ -417,12 +416,12 @@ public abstract class AbstractModelFactory<OM extends Model, OMB extends ModelBe
 	/**
 	 * Called when a model is updated. Shouldn't be called manually.
 	 * 
-	 * @param evt
+	 * @param event
 	 *            event of the model
 	 */
 	@Override
 	public void propertyChange(PropertyChangeEvent event) {
-		this.propertyChangeSupport.firePropertyChange(event);
+        this.propertyChangeSupport.firePropertyChange(event);
 	}
 	
 	@Override
@@ -572,6 +571,7 @@ public abstract class AbstractModelFactory<OM extends Model, OMB extends ModelBe
 	@SuppressWarnings("unchecked")
 	@Override
 	public void encodeToXML(OutputStream output) {
+
 		List<MB> beans = new ArrayList<MB>();
 		for (M model : this.models) {
 			try {
@@ -590,5 +590,4 @@ public abstract class AbstractModelFactory<OM extends Model, OMB extends ModelBe
 		
 		this.encodeBeansToXML(output, array);
 	}
-	
 }

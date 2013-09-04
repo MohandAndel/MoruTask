@@ -40,7 +40,7 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import morutask.GUI.Main;
+import morutask.gui.Main;
 import morutask.beans.ModelBean;
 import morutask.beans.TaskBean;
 //import morutask.models.TaskGroup.TaskItem;

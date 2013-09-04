@@ -6,7 +6,7 @@ import com.leclercb.commons.api.utils.DateUtils;
 
 public class Timer implements Comparable<Timer> {
 	
-	private long value;
+	private long value; // in Seconds
 	private Calendar startDate;
 	
 	public Timer() {
