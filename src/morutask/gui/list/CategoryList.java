@@ -45,14 +45,19 @@ import org.jdesktop.swingx.JXList;
 public class CategoryList extends JXList implements ListCategoryView {
 
     public CategoryList() {
+
         setSize(100, 100);
+        initCategories();
+
+        setModel(new ModelListCategory());
+        ViewUtils.getInstance().setCategoryList(this);
+    }
+
+    public void initCategories() {
 
         DayCategory dayCategory = new DayCategory();
         CompletionCategory completionCategory = new CompletionCategory();
         ReminderCategory reminderCategory = new ReminderCategory();
-
-        setModel(new ModelListCategory());
-        ViewUtils.getInstance().setCategoryList(this);
     }
 
     @Override

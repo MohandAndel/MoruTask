@@ -39,6 +39,7 @@ import org.jdesktop.swingx.renderer.DefaultTableRenderer;
 
 import javax.swing.*;
 import java.awt.*;
+import java.text.SimpleDateFormat;
 
 /**
  * @author mohand
@@ -47,24 +48,23 @@ public class TableRender extends DefaultTableRenderer {
 
     private JTable table;
     private Task task;
+    private SimpleDateFormat dateFormat;
     private boolean isSelected;
 
     public TableRender() {
 
+        dateFormat = new SimpleDateFormat();
+        dateFormat.applyPattern(Main.getSettings().getStringProperty("Date.Date_Format") + "    " + Main.getSettings().getStringProperty("Date.time_Format"));
     }
 
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
 
-        //JLabel label = (JLabel) super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
         this.table = table;
-         this.isSelected = isSelected;
-        //label.setOpaque(true);
+        this.isSelected = isSelected;
         this.task = (Task) value;
 
-        //label.setForeground(Main.getSettings().getColorProperty("theme.color.Priority." + task.getPriority().toString()));
-
-        return new CellTable();//label;
+        return new CellTable();
 
     }
 
@@ -74,14 +74,13 @@ public class TableRender extends DefaultTableRenderer {
         private JLabel date;
         private JLabel priority;
 
-        public CellTable(){
+        public CellTable() {
 
-            setLayout(new BoxLayout(this,BoxLayout.X_AXIS));
-            setSize(table.getWidth(),table.getRowHeight());
+            setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+            setSize(table.getWidth(), table.getRowHeight());
             setBackground(Color.WHITE);
 
-            if(isSelected)
-            {
+            if (isSelected) {
                 setBackground(Color.ORANGE);
             }
 
@@ -89,35 +88,34 @@ public class TableRender extends DefaultTableRenderer {
             initDate();
             initPriority();
 
-          int x =  table.getWidth()/6;
+            int x = table.getWidth() / 6;
 
-            add(Box.createRigidArea(new Dimension(5,0)));
+            add(Box.createRigidArea(new Dimension(5, 0)));
             add(title);
-            add(Box.createRigidArea(new Dimension(x,0)));
+            add(Box.createRigidArea(new Dimension(x, 0)));
             add(date);
-            add(Box.createRigidArea(new Dimension(x,0)));
+            add(Box.createRigidArea(new Dimension(x, 0)));
             add(priority);
         }
 
-        public void initTitle(){
+        public void initTitle() {
 
-            title = new JLabel(task.getTitle(),JLabel.LEFT);
-            title.setMaximumSize(new Dimension(table.getWidth()/3,table.getRowHeight()));
-            title.setPreferredSize(new Dimension(table.getWidth()/3,table.getRowHeight()));
+            title = new JLabel(task.getTitle(), JLabel.LEFT);
+            title.setMaximumSize(new Dimension(table.getWidth() / 3, table.getRowHeight()));
+            title.setPreferredSize(new Dimension(table.getWidth() / 3, table.getRowHeight()));
 
         }
 
-        public void initDate(){
+        public void initDate() {
 
-            date = new JLabel(task.getStartDate().getTime().toString());
-            if(task.HasReminder())
-            {
-                date.setIcon(ImageUtils.getImage("alarm.png",25,25));
+            date = new JLabel(dateFormat.format(task.getStartDate().getTime()));
+            if (task.hasReminder()) {
+                date.setIcon(ImageUtils.getImage("alarm.png", 25, 25));
             }
 
         }
 
-        public void initPriority(){
+        public void initPriority() {
 
             priority = new JLabel(task.getPriority().toString());
             priority.setForeground(Main.getSettings().getColorProperty("theme.color.Priority." + task.getPriority().toString()));
@@ -125,14 +123,17 @@ public class TableRender extends DefaultTableRenderer {
         }
 
         @Override
-        public void paint(Graphics g) {
-            super.paint(g);
+        protected void paintComponent(Graphics g) {
+            super.paintComponent(g);
 
-            if(task.isCompleted())
-            {
+            if (task.isCompleted()) {
                 g.setColor(Color.LIGHT_GRAY);
-                g.drawLine(0,getHeight()/2,getWidth(),getHeight()/2);
+                g.drawLine(0, getHeight() / 2, getWidth(), getHeight() / 2);
+                title.setForeground(Color.LIGHT_GRAY);
+                date.setForeground(Color.LIGHT_GRAY);
+                priority.setForeground(Color.LIGHT_GRAY);
             }
+
         }
     }
 }

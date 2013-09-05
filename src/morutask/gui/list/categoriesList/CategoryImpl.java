@@ -45,7 +45,6 @@ public class CategoryImpl implements Category {
 
     @Override
     public void increase(int x) {
-        //counter++;
         counter += x;
     }
 

@@ -37,6 +37,7 @@ import morutask.gui.Main;
 import morutask.models.enums.TaskPriority;
 
 import java.awt.*;
+import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -72,6 +73,10 @@ public class settings {
 
     public void setRowHigh(int x) {
         properties.setIntegerProperty("tasktable.row.high", x);
+    }
+
+    public void setDateFormat(String dateFormat){
+        properties.setSimpleDateFormatProperty("Date.Date_Format", new SimpleDateFormat(dateFormat));
     }
 
 }

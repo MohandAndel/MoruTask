@@ -17,13 +17,15 @@ import java.beans.PropertyChangeListener;
  */
 public class ReminderCategory implements PropertyChangeListener {
 
-    private ReminderList reminderList;
+   // private ReminderList reminderList;
     private Category reminder;
     private ReminderFilter filter;
 
     public ReminderCategory() {
+
         TaskFactory.getInstance().addPropertyChangeListener(Task.PROP_REMINDER, this);
-        reminderList = ReminderList.getInstance();
+
+        //reminderList = ReminderList.getInstance();
         filter = new ReminderFilter();
         reminder = new CategoryImpl("Reminder List", filter);
 
@@ -39,14 +41,14 @@ public class ReminderCategory implements PropertyChangeListener {
 
         @Override
         public String toDisplayinList(String str) {
-            String concat = str.concat("(" + reminderList.getNotifiedTasks().size() + ")");
-            return concat;
+           // String concat = str.concat("(" + reminderList.getNotifiedTasks().size() + ")");
+            return str;
         }
 
         @Override
         public boolean include(Task t) {
 
-            if (t.HasReminder())
+            if (t.hasReminder())
                 return true;
 
             return false;

@@ -42,7 +42,7 @@ public class FormBuildHelper {
 
 
     public JPanel appendLabeltoComponent(String str, Component component, boolean colon) {
-        JPanel panel = new JPanel();//new FlowLayout());
+        JPanel panel = new JPanel();
         String s = (colon ? ":" : "");
         String concat = str.concat(s);
         panel.add(new JLabel(concat));

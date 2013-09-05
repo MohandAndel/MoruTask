@@ -98,6 +98,23 @@ public class ReminderDialog extends JDialog {
         });
 
         snoozeButton = new JButton("Snooze");
+        snoozeButton.setEnabled(false);
+        //initSnoozetimes(); //Todo : support snooze times
+
+        add(titleLabel, BorderLayout.CENTER);
+
+        JPanel panel = new JPanel(new FlowLayout(5, 5, 5));
+
+        panel.add(doneButton);
+        panel.add(DismissButton);
+        panel.add(snoozeButton);
+
+        add(panel, BorderLayout.PAGE_END);
+
+    }
+
+    public void initSnoozetimes()
+    {
         final JPopupMenu popupMenu = new JPopupMenu();
         JMenuItem menuItem = new JMenuItem("1 min");
         menuItem.addActionListener(new ActionListener() {
@@ -106,7 +123,8 @@ public class ReminderDialog extends JDialog {
                 Calendar startDate = Calendar.getInstance();
                 startDate.add(Calendar.MINUTE,1);
                 task.setStartDate(startDate);
-                task.SetReminder(true);
+                task.setReminder(true);
+
                 //showTimer();
                 dispose();
             }
@@ -121,16 +139,6 @@ public class ReminderDialog extends JDialog {
                 popupMenu.setVisible(true);
             }
         });
-
-        add(titleLabel, BorderLayout.CENTER);
-
-        JPanel panel = new JPanel(new FlowLayout(5, 5, 5));
-
-        panel.add(doneButton);
-        panel.add(DismissButton);
-        panel.add(snoozeButton);
-
-        add(panel, BorderLayout.PAGE_END);
 
     }
 

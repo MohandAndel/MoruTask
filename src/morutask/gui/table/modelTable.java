@@ -97,7 +97,6 @@ public class modelTable extends AbstractTableModel implements ListChangeListener
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
 
-        System.out.println("Updated ModelTable");
         if (evt.getSource() instanceof Task) {
             fireTableCellUpdated(ViewUtils.getInstance().getTaskTable().getSelectedRow(), 0);
         }

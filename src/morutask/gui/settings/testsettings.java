@@ -42,7 +42,8 @@ public class testsettings {
     public static void main(String[] agr) {
         settings setting = new settings();
         //setting.setDefultTitleofTask("New Task");
-        setting.setRowHigh(30);
+        //setting.setRowHigh(30);
+        setting.setDateFormat("dd-MMM-yyy");
         Main.saveSettings();
     }
 

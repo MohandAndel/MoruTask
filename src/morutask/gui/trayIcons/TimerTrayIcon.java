@@ -32,12 +32,13 @@ public class TimerTrayIcon extends AbstractTrayIcon implements TimerOperations {
         setTagName("Timer");
         setImage(ImageUtils.getImage("clock.png"));
 
-        addMenuItem(new MenuItem("Remaining time: 11"));
+        addMenuItem(new MenuItem("Remaining time: 0"));
 
         addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
                 System.out.println("Pressed");
+
             }
         });
 
@@ -126,6 +127,7 @@ public class TimerTrayIcon extends AbstractTrayIcon implements TimerOperations {
         if (!isPause()) {
             System.out.println("Current Icon is Removed");
             TrayIconManager.getInstance().disableTray();
+            task.setReminder(false);
 
         }
 

@@ -4,9 +4,12 @@ import com.leclercb.commons.api.coder.exc.FactoryCoderException;
 import com.leclercb.commons.api.properties.PropertyMap;
 import morutask.gui.Main;
 import morutask.gui.table.TaskTable;
+import morutask.gui.utils.ViewUtils;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 
@@ -17,6 +20,7 @@ import java.awt.event.MouseEvent;
  * Time: 1:22 PM
  * To change this template use File | Settings | File Templates.
  */
+
 public class MenuPanel extends JPanel implements MenuElement {
 
     private JScrollPane scrollPane;
@@ -37,6 +41,7 @@ public class MenuPanel extends JPanel implements MenuElement {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
         init();
+        initButtoms();
         setVisible(true);
     }
 
@@ -46,8 +51,20 @@ public class MenuPanel extends JPanel implements MenuElement {
         //taskTable.setSize(200,200);
 
         scrollPane = new JScrollPane(taskTable);
-
         add(scrollPane, BorderLayout.CENTER);
+    }
+
+    public void initButtoms()
+    {
+        JButton exitButton = new JButton("Exit");
+        exitButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                System.exit(0);
+            }
+        });
+
+        add(exitButton,BorderLayout.PAGE_END);
     }
 
     @Override

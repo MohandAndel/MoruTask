@@ -76,12 +76,6 @@ public class DayCategory implements PropertyChangeListener {
     }
 
     public boolean countdays(Task t) {
-        //Category selected = ViewUtils.getInstance().getSelectedCategory();
-
-//        if (days.get(0)) {
-//            days.get(0).increase();
-//            return true;
-//        }
 
         int daysBetween;
 
@@ -94,6 +88,8 @@ public class DayCategory implements PropertyChangeListener {
         if (!t.getModelStatus().isEndUserStatus()) {
             i = -1;
         }
+
+        days.get(ALL).increase(i);
 
         if (daysBetween == 0) {
             ;

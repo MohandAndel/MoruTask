@@ -152,9 +152,9 @@ public class TaskEditorPanel extends JPanel {
             @Override
             public void itemStateChanged(ItemEvent itemEvent) {
                 if (itemEvent.getStateChange() == ItemEvent.SELECTED) {
-                    task.SetReminder(true);
+                    task.setReminder(true);
                 } else {
-                    task.SetReminder(false);
+                    task.setReminder(false);
                 }
             }
         });
@@ -190,7 +190,7 @@ public class TaskEditorPanel extends JPanel {
         this.NoteArea.setText(task.getNote());
         PriorityComboBox.setSelectedItem(task.getPriority());
         componentsBar.getToggleButton("complete").setSelected(task.isCompleted());
-        componentsBar.getToggleButton("reminder").setSelected(task.HasReminder());
+        componentsBar.getToggleButton("reminder").setSelected(task.hasReminder());
 
         timerField.setTimer(task.getTimer());
 

@@ -62,7 +62,6 @@ public class ComponentFactory {
     }
 
     public static JComboBox<Object> createSortComboBox() {
-        // final TableSortController rowsorter = (TableSortController) ViewUtils.getInstance().getTaskTable().getRowSorter();
 
         final JComboBox sortComboBox = new JComboBox(new DefaultComboBoxModel<>(TaskSortType.values()));
         sortComboBox.addItemListener(new ItemListener() {

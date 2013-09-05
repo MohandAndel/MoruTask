@@ -13,7 +13,7 @@ public class TimerThread extends Thread {
 
 
     public TimerThread(TimerOperations timer, Task t) {
-        //timerRunnable = new TimerRunnable(timer,t);
+
         super(new TimerRunnable(timer, t), "TimerThread");
     }
 }

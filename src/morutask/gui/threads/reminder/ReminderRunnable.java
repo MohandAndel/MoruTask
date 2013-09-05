@@ -86,7 +86,7 @@ class ReminderRunnable implements Runnable, PropertyChangeListener, ListChangeLi
                                 if (ReminderRunnable.this.notifiedTasks.getNotifiedTasks().contains(task))
                                     continue;
 
-                                if (!task.getModelStatus().isEndUserStatus() || !task.HasReminder())
+                                if (!task.getModelStatus().isEndUserStatus() || !task.hasReminder())
                                     continue;
 
                                 if (TaskUtils.isInStartDateReminderZone(task)

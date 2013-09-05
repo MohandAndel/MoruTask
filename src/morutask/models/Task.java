@@ -110,7 +110,7 @@ public class Task extends AbstractModelParent<Task> implements ModelNote, Proper
 		this.setCompletedOn(null);
 		this.setStartDate(null);
 		this.setDueDate(null);
-		this.SetReminder(false);
+		this.setReminder(false);
 		this.setRepeat(null);
 		this.setRepeatFrom(TaskRepeatFrom.DUE_DATE);
 		this.setStatus(TaskStatus.NONE);
@@ -131,7 +131,7 @@ public class Task extends AbstractModelParent<Task> implements ModelNote, Proper
 		task.setCompletedOn(this.getCompletedOn());
 		task.setStartDate(this.getStartDate());
 		task.setDueDate(this.getDueDate());
-                task.SetReminder(this.HasReminder());
+                task.setReminder(this.hasReminder());
 		task.setRepeat(this.getRepeat());
 		task.setRepeatFrom(this.getRepeatFrom());
 		task.setStatus(this.getStatus());
@@ -170,7 +170,7 @@ public class Task extends AbstractModelParent<Task> implements ModelNote, Proper
 		
 		this.setStartDate(bean.getStartDate());
 		this.setDueDate(bean.getDueDate());
-		this.SetReminder(bean.HasReminder());
+		this.setReminder(bean.HasReminder());
 		this.setRepeat(bean.getRepeat());
 		this.setRepeatFrom(bean.getRepeatFrom());
 		this.setStatus(bean.getStatus());
@@ -194,7 +194,7 @@ public class Task extends AbstractModelParent<Task> implements ModelNote, Proper
 		
 		bean.setStartDate(this.getStartDate());
 		bean.setDueDate(this.getDueDate());
-		bean.setReminder(this.HasReminder());
+		bean.setReminder(this.hasReminder());
 		bean.setRepeat(this.getRepeat());
 		bean.setRepeatFrom(this.getRepeatFrom());
 		bean.setStatus(this.getStatus());
@@ -372,14 +372,14 @@ public class Task extends AbstractModelParent<Task> implements ModelNote, Proper
 				dueDateReminder);
 	}
         
-        public void SetReminder(boolean reminder)
+        public void setReminder(boolean reminder)
         {
             boolean oldReminder = this.withReminder;
             this.withReminder = reminder;
             this.updateProperty(PROP_REMINDER, oldReminder, reminder);
         }
         
-        public boolean HasReminder()
+        public boolean hasReminder()
         {
             return this.withReminder;
         }
@@ -537,7 +537,7 @@ public class Task extends AbstractModelParent<Task> implements ModelNote, Proper
 			buffer.append("Due Date: "
 					+ dateFormat.format(this.getDueDate().getTime())
 					+ "\n");
-		buffer.append("With Reminder : " + this.HasReminder() + "\n");
+		buffer.append("With Reminder : " + this.hasReminder() + "\n");
 		buffer.append("Repeat: " + this.getRepeat() + "\n");
 		if (this.getRepeatFrom() != null)
 			buffer.append("Repeat From: " + this.getRepeatFrom() + "\n");

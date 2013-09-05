@@ -55,18 +55,18 @@ public class DateChooser extends JDateChooser {
 
             @Override
             public void popupMenuWillBecomeVisible(PopupMenuEvent e) {
-                System.out.println("BecomeVisible");
+                //System.out.println("BecomeVisible");
             }
 
             @Override
             public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {
-                System.out.println("InVisible");
+                //System.out.println("InVisible");
                 DateChooser.this.transferFocus();
             }
 
             @Override
             public void popupMenuCanceled(PopupMenuEvent e) {
-                System.out.println("Canceled");
+                //System.out.println("Canceled");
             }
         });
 

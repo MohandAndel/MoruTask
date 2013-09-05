@@ -30,45 +30,4 @@ public class testIcon {
         TrayIconManager.getInstance().fireShowTrayIcon("Main", null);
 
     }
-
-    public void JtrayIcon() throws AWTException {
-
-        SystemTray tray = SystemTray.getSystemTray();
-
-
-        TrayIcon icon2 = new TrayIcon(ImageUtils.getImage("pause.png"));
-
-        icon2.setImageAutoSize(true);
-
-        tray.addPropertyChangeListener("trayIcons", new PropertyChangeListener() {
-            @Override
-            public void propertyChange(PropertyChangeEvent propertyChangeEvent) {
-                System.out.println("trayIcon added or removed !!");
-            }
-        });
-
-        final JPopupMenu jpopup = new JPopupMenu();
-
-        JMenuItem javaCupMI = new JMenuItem("Example", new ImageIcon("images" + File.separator + "check.png"));
-        jpopup.add(javaCupMI);
-
-        jpopup.addSeparator();
-
-        JMenuItem exitMI = new JMenuItem("Exit");
-        jpopup.add(exitMI);
-
-        icon2.addMouseListener(new MouseAdapter() {
-            public void mouseReleased(MouseEvent e) {
-                if (e.getButton() == MouseEvent.BUTTON3) {
-                    jpopup.setLocation(e.getX(), e.getY());
-                    jpopup.setInvoker(jpopup);
-                    jpopup.setVisible(true);
-                }
-            }
-        });
-
-
-        tray.add(icon2);
-
-    }
 }

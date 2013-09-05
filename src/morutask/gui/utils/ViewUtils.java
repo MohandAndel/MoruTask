@@ -48,10 +48,6 @@ public class ViewUtils {
 
     private TaskTable taskTable;
     private CategoryList categoryList;
-    //private String viewtype;
-
-    //public static String ViewType_Task = "TaskView";
-    //public static String ViewType_Calendar = "CalendarView";
 
     private ViewUtils() {
 

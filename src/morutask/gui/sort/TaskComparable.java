@@ -41,13 +41,6 @@ import java.util.Comparator;
  */
 public class TaskComparable implements Comparator<Task> {
 
-//    public static final int ORDERBY_MODELID = 0 ;
-//    public static final int ORDERBY_PRIORITY = 1 ;
-//    public static final int ORDERBY_DATE = 2 ;
-//
-//    public static final int ASCENDING = 1;
-//    public static final int DESCENDING= -1;
-
     private TaskSortType TypeOfComparison;
 
     public TaskComparable() {

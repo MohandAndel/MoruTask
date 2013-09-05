@@ -40,8 +40,10 @@ import morutask.gui.list.CategoryList;
 import morutask.gui.list.categoriesList.Category;
 import morutask.gui.table.Filter.TableFilter;
 import morutask.gui.table.TaskTable;
+import morutask.gui.trayIcons.TrayIconManager;
 import morutask.gui.utils.ComponentFactory;
 import morutask.gui.utils.FormBuildHelper;
+import morutask.gui.utils.ImageUtils;
 import morutask.gui.utils.ViewUtils;
 import org.jdesktop.swingx.JXFrame;
 import org.jdesktop.swingx.JXSearchField;
@@ -75,6 +77,7 @@ public class MainFrame extends JXFrame {
 
 
     public MainFrame() {
+        setIconImage(ImageUtils.getImage("Morulogo.png"));
         this.initialize();
 
 
@@ -89,18 +92,20 @@ public class MainFrame extends JXFrame {
         this.initMenuBar();
 
         setTitle("MoruTask 0.4 Alpha");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);//.EXIT_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
                 try {
                     //Todo: No need for saving models IF there is No change
-
-
                     Main.saveModels();
-                    //Main.saveSettings();
+                    TrayIconManager.getInstance().fireShowTrayIcon("Main", null);
+                    dispose();
+
                 } catch (FileNotFoundException | FactoryCoderException ex) {
                     Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (AWTException e1) {
+                    e1.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
                 }
             }
         });

@@ -35,6 +35,7 @@ package morutask.gui;
 import com.leclercb.commons.api.coder.exc.FactoryCoderException;
 import com.leclercb.commons.api.properties.PropertyMap;
 import morutask.gui.threads.reminder.ReminderThread;
+import morutask.gui.trayIcons.MainIconTray;
 import morutask.gui.trayIcons.TimerTrayIcon;
 import morutask.models.NoteFactory;
 import morutask.models.TaskFactory;
@@ -83,10 +84,11 @@ public class Main {
             }
         });
 
-        //saveModels();
     }
 
     public static void initTrayIcons() {
+
+        MainIconTray mainIconTray = new MainIconTray();
         TimerTrayIcon timerTrayIcon = new TimerTrayIcon();
     }
 

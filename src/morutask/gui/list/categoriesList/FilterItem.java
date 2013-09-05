@@ -39,7 +39,6 @@ import morutask.gui.table.Filter.Filterable;
  */
 public interface FilterItem extends Filterable {
 
-    @Deprecated
     public String toDisplayinList(String str);
 
 

@@ -22,7 +22,7 @@ public class MainIconTray extends AbstractTrayIcon {
         setTagName("Main");
         setMenu(null);
         menuPanel = new MenuPanel();
-        setImage(ImageUtils.getImage("check.png"));
+        setImage(ImageUtils.getImage("Morulogo.png"));
 
 
         jpopup = new JPopupMenu();
