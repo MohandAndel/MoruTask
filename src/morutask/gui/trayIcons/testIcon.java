@@ -1,16 +1,9 @@
 package morutask.gui.trayIcons;
 
 import com.leclercb.commons.api.coder.exc.FactoryCoderException;
-import morutask.gui.utils.ImageUtils;
 import morutask.models.TaskFactory;
 
-import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import java.io.File;
 
 /**
  * Created with IntelliJ IDEA.

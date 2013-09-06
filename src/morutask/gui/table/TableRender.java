@@ -109,6 +109,7 @@ public class TableRender extends DefaultTableRenderer {
         public void initDate() {
 
             date = new JLabel(dateFormat.format(task.getStartDate().getTime()));
+
             if (task.hasReminder()) {
                 date.setIcon(ImageUtils.getImage("alarm.png", 25, 25));
             }

@@ -33,7 +33,6 @@
 package morutask.gui.table;
 
 import morutask.gui.Main;
-import morutask.gui.actions.ActionEditTask;
 import morutask.gui.utils.ViewUtils;
 import morutask.models.Task;
 

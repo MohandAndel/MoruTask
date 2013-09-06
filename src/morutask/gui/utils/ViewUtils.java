@@ -97,8 +97,7 @@ public class ViewUtils {
         return this.categoryList.getSelectedCategory();
     }
 
-    public TaskEditorPanel getTaskEditorPanel()
-    {
+    public TaskEditorPanel getTaskEditorPanel() {
         TaskEditorPanel.getinstance().setCurrentTaskToEditor();
         return TaskEditorPanel.getinstance();
     }

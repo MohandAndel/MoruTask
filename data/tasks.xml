@@ -81,26 +81,6 @@
     <note></note>
   </task>
   <task>
-    <modelid isnew="true">d815186f-fc2c-4633-aead-f58476734651</modelid>
-    <modelreferenceids class="java.util.Collections$UnmodifiableMap"/>
-    <modelstatus>TO_UPDATE</modelstatus>
-    <modelcreationdate>1378380477914</modelcreationdate>
-    <modelupdatedate>1378380486573</modelupdatedate>
-    <title>test test</title>
-    <order>0</order>
-    <properties/>
-    <completed>false</completed>
-    <startdate>1378380477917</startdate>
-    <startdatereminder>0</startdatereminder>
-    <hasreminder>false</hasreminder>
-    <repeatfrom>DUE_DATE</repeatfrom>
-    <status>NONE</status>
-    <length>0</length>
-    <timer startdate="">0</timer>
-    <priority>TOP</priority>
-    <note></note>
-  </task>
-  <task>
     <modelid isnew="true">6fb541bf-c4ea-4f9f-a86d-9355a53e888d</modelid>
     <modelreferenceids class="java.util.Collections$UnmodifiableMap"/>
     <modelstatus>TO_UPDATE</modelstatus>

@@ -4,7 +4,6 @@ import com.leclercb.commons.api.coder.exc.FactoryCoderException;
 import com.leclercb.commons.api.properties.PropertyMap;
 import morutask.gui.Main;
 import morutask.gui.table.TaskTable;
-import morutask.gui.utils.ViewUtils;
 
 import javax.swing.*;
 import java.awt.*;
@@ -54,8 +53,7 @@ public class MenuPanel extends JPanel implements MenuElement {
         add(scrollPane, BorderLayout.CENTER);
     }
 
-    public void initButtoms()
-    {
+    public void initButtoms() {
         JButton exitButton = new JButton("Exit");
         exitButton.addActionListener(new ActionListener() {
             @Override
@@ -64,7 +62,7 @@ public class MenuPanel extends JPanel implements MenuElement {
             }
         });
 
-        add(exitButton,BorderLayout.PAGE_END);
+        add(exitButton, BorderLayout.PAGE_END);
     }
 
     @Override

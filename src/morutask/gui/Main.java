@@ -35,7 +35,7 @@ package morutask.gui;
 import com.leclercb.commons.api.coder.exc.FactoryCoderException;
 import com.leclercb.commons.api.properties.PropertyMap;
 import morutask.gui.threads.reminder.ReminderThread;
-import morutask.gui.trayIcons.MainIconTray;
+import morutask.gui.trayIcons.MoruTaskIconTray;
 import morutask.gui.trayIcons.TimerTrayIcon;
 import morutask.models.NoteFactory;
 import morutask.models.TaskFactory;
@@ -51,6 +51,7 @@ import java.util.logging.Logger;
 public class Main {
 
     private static PropertyMap SETTINGS;
+    private static MainFrame gui;
     //private static boolean isModelsChanged = false;
     //private static boolean isSettingChanged = false;
 
@@ -79,16 +80,21 @@ public class Main {
                     Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
-                MainFrame gui = new MainFrame();
+                gui = new MainFrame();
                 gui.setVisible(true);
             }
         });
 
     }
 
+    public static void setGuiVisible(boolean x) {
+        gui.setVisible(x);
+    }
+
     public static void initTrayIcons() {
 
-        MainIconTray mainIconTray = new MainIconTray();
+        //MainIconTray mainIconTray = new MainIconTray();
+        new MoruTaskIconTray();
         TimerTrayIcon timerTrayIcon = new TimerTrayIcon();
     }
 

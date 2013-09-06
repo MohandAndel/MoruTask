@@ -22,23 +22,23 @@ public class TimerRunnable implements Runnable {
     @Override
     public void run() {
 
-            System.out.println("TimerRunnable is running");
-            long timerValue = task.getTimer().getTimerValue();
-            System.out.println("TimerThread timerValue:" + timerValue);
-            System.out.println("TimerThread Value:" + task.getTimer().getValue());
+        System.out.println("TimerRunnable is running");
+        long timerValue = task.getTimer().getTimerValue();
+        System.out.println("TimerThread timerValue:" + timerValue);
+        System.out.println("TimerThread Value:" + task.getTimer().getValue());
 
-            try {
-                Thread.sleep(task.getTimer().getTimerValue() * 1000);
-                System.out.println("waked up after sleeping");
-                timer.setPauseFlag(false);
-                timer.TimerFinish();
+        try {
+            Thread.sleep(task.getTimer().getTimerValue() * 1000);
+            System.out.println("waked up after sleeping");
+            timer.setPauseFlag(false);
+            timer.TimerFinish();
 
-            } catch (InterruptedException e) {
-                System.out.println("TimerRunnable is interrupted");
-                timer.setPauseFlag(true);
-                timer.TimerFinish();
-                e.printStackTrace();
-            }
+        } catch (InterruptedException e) {
+            System.out.println("TimerRunnable is interrupted");
+            timer.setPauseFlag(true);
+            timer.TimerFinish();
+            e.printStackTrace();
+        }
 
 
     }

@@ -81,7 +81,6 @@ public class ReminderDialog extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 task.setCompleted(true);
-                //setVisible(false);
                 showTimer();
                 dispose();
             }
@@ -92,7 +91,6 @@ public class ReminderDialog extends JDialog {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                //setVisible(false);
                 dispose();
             }
         });
@@ -113,15 +111,14 @@ public class ReminderDialog extends JDialog {
 
     }
 
-    public void initSnoozetimes()
-    {
+    public void initSnoozetimes() {
         final JPopupMenu popupMenu = new JPopupMenu();
         JMenuItem menuItem = new JMenuItem("1 min");
         menuItem.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
                 Calendar startDate = Calendar.getInstance();
-                startDate.add(Calendar.MINUTE,1);
+                startDate.add(Calendar.MINUTE, 1);
                 task.setStartDate(startDate);
                 task.setReminder(true);
 

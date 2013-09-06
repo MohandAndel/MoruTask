@@ -1,9 +1,5 @@
 package morutask.gui.actions;
 
-import morutask.gui.TaskEditorPanel;
-import morutask.gui.utils.ViewUtils;
-import morutask.models.Task;
-
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 

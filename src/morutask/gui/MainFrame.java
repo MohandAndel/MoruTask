@@ -92,15 +92,24 @@ public class MainFrame extends JXFrame {
         this.initMenuBar();
 
         setTitle("MoruTask 0.4 Alpha");
-        setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);//.EXIT_ON_CLOSE);
+
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
                 try {
-                    //Todo: No need for saving models IF there is No change
+
+                    int choose = JOptionPane.showOptionDialog(MainFrame.this, "would you like to keep the program running in background ?", null
+                            , JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new String[]{"Ok", "Exit"}, "Ok");
+
+
                     Main.saveModels();
-                    TrayIconManager.getInstance().fireShowTrayIcon("Main", null);
-                    dispose();
+
+                    if (choose == 0) {
+                        TrayIconManager.getInstance().fireShowTrayIcon("Main", null);
+                        dispose();
+                    } else {
+                        System.exit(0);
+                    }
 
                 } catch (FileNotFoundException | FactoryCoderException ex) {
                     Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);

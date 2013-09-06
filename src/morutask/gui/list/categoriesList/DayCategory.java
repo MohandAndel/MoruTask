@@ -54,7 +54,6 @@ public class DayCategory implements PropertyChangeListener {
 
     public void scan() {
         for (Task tt : TaskFactory.getInstance().getList()) {
-            //TimeDifference.GetTaskday(tt);
             countdays(tt);
         }
     }
@@ -68,7 +67,6 @@ public class DayCategory implements PropertyChangeListener {
                 return;
 
             Task tt = (Task) evt.getSource();
-            //TimeDifference.GetTaskday(tt);
             countdays(tt);
             ViewUtils.getInstance().getCategoryList().fireContentsChanged();
         }
@@ -133,7 +131,6 @@ public class DayCategory implements PropertyChangeListener {
             Category selected = ViewUtils.getInstance().getSelectedCategory();
 
             if (days.get(ALL).equals(selected)) {
-                //days.get(0).increase();
                 return true;
             }
 
@@ -146,22 +143,18 @@ public class DayCategory implements PropertyChangeListener {
             }
 
             if (days.get(TODAY).equals(selected) && daysBetween == 0) {
-                //days.get(1).increase();
                 return true;
             }
 
             if (days.get(TOMORROW).equals(selected) && daysBetween == 1) {
-                // days.get(2).increase();
                 return true;
             }
 
             if (days.get(THIS_WEEK).equals(selected) && daysBetween > 1 && daysBetween <= 6) {
-                //days.get(3).increase();
                 return true;
             }
 
             if (days.get(LATER).equals(selected) && daysBetween >= 6) {
-                //days.get(4).increase();
                 return true;
             }
 

@@ -208,8 +208,7 @@ public class TaskEditorPanel extends JPanel {
         setValues();
     }
 
-    public void setCurrentTaskToEditor()
-    {
+    public void setCurrentTaskToEditor() {
         Task selectedTask = ViewUtils.getInstance().getSelectedTask();
         this.task = selectedTask;
         setValues();

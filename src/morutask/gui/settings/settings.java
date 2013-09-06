@@ -75,7 +75,7 @@ public class settings {
         properties.setIntegerProperty("tasktable.row.high", x);
     }
 
-    public void setDateFormat(String dateFormat){
+    public void setDateFormat(String dateFormat) {
         properties.setSimpleDateFormatProperty("Date.Date_Format", new SimpleDateFormat(dateFormat));
     }
 
