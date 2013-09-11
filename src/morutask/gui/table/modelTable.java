@@ -98,6 +98,12 @@ public class modelTable extends AbstractTableModel implements ListChangeListener
     public void propertyChange(PropertyChangeEvent evt) {
 
         if (evt.getSource() instanceof Task) {
+          Task task = (Task) evt.getSource();
+            if ( !task.getModelStatus().isEndUserStatus())
+            {
+              int x =  ViewUtils.getInstance().getTaskTable().getSelectedRow();
+                fireTableRowsDeleted(0,x);
+            }
             fireTableCellUpdated(ViewUtils.getInstance().getTaskTable().getSelectedRow(), 0);
         }
 

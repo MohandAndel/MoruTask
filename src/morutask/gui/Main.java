@@ -34,6 +34,7 @@ package morutask.gui;
 
 import com.leclercb.commons.api.coder.exc.FactoryCoderException;
 import com.leclercb.commons.api.properties.PropertyMap;
+import morutask.gui.actions.ActionCheckVersion;
 import morutask.gui.threads.reminder.ReminderThread;
 import morutask.gui.trayIcons.MoruTaskIconTray;
 import morutask.gui.trayIcons.TimerTrayIcon;
@@ -41,6 +42,8 @@ import morutask.models.NoteFactory;
 import morutask.models.TaskFactory;
 
 import javax.swing.*;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.io.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -53,13 +56,19 @@ public class Main {
     private static PropertyMap SETTINGS;
     private static MainFrame gui;
     //private static boolean isModelsChanged = false;
-    //private static boolean isSettingChanged = false;
+    private static boolean isSettingChanged = false;
 
     @SuppressWarnings("null")
     public static void main(String[] args) throws Exception {
 
         SETTINGS = new PropertyMap();
 
+        SETTINGS.addPropertyChangeListener(new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent propertyChangeEvent) {
+                isSettingChanged = true;
+            }
+        });
         loadSettings(SETTINGS);
         // Load models from files
         loadModels();
@@ -68,6 +77,7 @@ public class Main {
 
         ReminderThread reminderThread = new ReminderThread();
         reminderThread.start();
+        ActionCheckVersion.checkVersion(true);
 
         SwingUtilities.invokeLater(new Runnable() {
 
@@ -129,6 +139,17 @@ public class Main {
     }
 
     public static void saveData() {
+
+        if(isSettingChanged)
+            saveSettings();
+
+        try {
+            saveModels();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        } catch (FactoryCoderException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
 
 
     }

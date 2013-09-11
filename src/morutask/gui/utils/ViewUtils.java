@@ -98,7 +98,7 @@ public class ViewUtils {
     }
 
     public TaskEditorPanel getTaskEditorPanel() {
-        TaskEditorPanel.getinstance().setCurrentTaskToEditor();
+       // TaskEditorPanel.getinstance().setCurrentTaskToEditor();
         return TaskEditorPanel.getinstance();
     }
 

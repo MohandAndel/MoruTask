@@ -20,7 +20,7 @@ public class ImageUtils {
 
     public static ImageIcon getImage(String file, int width, int height) {
 
-        ImageIcon instance = new ImageIcon("images" + File.separator + file);
+        ImageIcon instance = new ImageIcon("resources" + File.separator + "images" + File.separator + file);
 
         if (width >= 0 && height >= 0) {
             instance = new ImageIcon(instance.getImage().getScaledInstance(
@@ -34,7 +34,7 @@ public class ImageUtils {
     public static Image getImage(String file) {
         BufferedImage image = null;
         try {
-            image = ImageIO.read(new File("images" + File.separator + file));
+            image = ImageIO.read(new File("resources" + File.separator +"images" + File.separator + file));
         } catch (IOException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }

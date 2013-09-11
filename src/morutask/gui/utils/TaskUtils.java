@@ -132,8 +132,11 @@ public final class TaskUtils {
         now.set(Calendar.SECOND, 0);
         now.set(Calendar.MILLISECOND, 0);
         Calendar startDateReminder = DateUtils.cloneCalendar(startDate);
-        //startDateReminder.add(Calendar.MINUTE,-1); //-task.getStartDateReminder());
-        if (now.compareTo(startDateReminder) == 0
+
+        startDateReminder.set(Calendar.SECOND,0);
+        startDateReminder.set(Calendar.MILLISECOND, 0);
+
+        if (now.compareTo(startDateReminder) >= 0
                 && now.compareTo(startDate) <= 0)
             return true;
 

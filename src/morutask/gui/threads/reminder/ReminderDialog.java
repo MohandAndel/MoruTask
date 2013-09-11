@@ -95,9 +95,8 @@ public class ReminderDialog extends JDialog {
             }
         });
 
-        snoozeButton = new JButton("Snooze");
-        snoozeButton.setEnabled(false);
-        //initSnoozetimes(); //Todo : support snooze times
+
+        initSnoozeButton();
 
         add(titleLabel, BorderLayout.CENTER);
 
@@ -111,23 +110,19 @@ public class ReminderDialog extends JDialog {
 
     }
 
-    public void initSnoozetimes() {
-        final JPopupMenu popupMenu = new JPopupMenu();
-        JMenuItem menuItem = new JMenuItem("1 min");
-        menuItem.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent actionEvent) {
-                Calendar startDate = Calendar.getInstance();
-                startDate.add(Calendar.MINUTE, 1);
-                task.setStartDate(startDate);
-                task.setReminder(true);
+    public void initSnoozeButton() {
 
-                //showTimer();
-                dispose();
-            }
-        });
-        popupMenu.add(menuItem);
-        //snoozeButton.setComponentPopupMenu(popupMenu);
+        snoozeButton = new JButton("Snooze");
+        final JPopupMenu popupMenu = new JPopupMenu();
+
+        int amount = 5;
+        for (int i =0 ;i<=11;i++)
+        {
+           JMenuItem menuItem1 = new JMenuItem(amount + "mins");
+            menuItem1.addActionListener(new ActionSnoozeTime(amount));
+            popupMenu.add(menuItem1);
+            amount += 5;
+        }
         snoozeButton.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseReleased(MouseEvent e) {
@@ -141,7 +136,8 @@ public class ReminderDialog extends JDialog {
 
     public void viewTask(Task t) {
         this.task = t;
-        titleLabel.setText(t.getTitle());
+        titleLabel.setText(t.toString());
+        pack();
         setVisible(true);
     }
 
@@ -154,6 +150,25 @@ public class ReminderDialog extends JDialog {
             } catch (AWTException e) {
                 e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
             }
+
+        }
+    }
+
+    public class ActionSnoozeTime extends AbstractAction {
+
+        private int amounttime;
+
+        public ActionSnoozeTime (int amounttime) {
+            this.amounttime = amounttime;
+        }
+
+        @Override
+        public void actionPerformed(ActionEvent actionEvent) {
+
+            Calendar startDate = Calendar.getInstance();
+            startDate.add(Calendar.MINUTE,this.amounttime);
+            task.setStartDate(startDate);
+            dispose();
 
         }
     }

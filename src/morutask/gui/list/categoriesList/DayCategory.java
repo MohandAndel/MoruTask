@@ -28,10 +28,8 @@ public class DayCategory implements PropertyChangeListener {
 
     private List<Category> days;
     private DayFilter filter;
-    private int i;
 
     public DayCategory() {
-        i = 1;
 
         filter = new DayFilter();
 
@@ -76,6 +74,7 @@ public class DayCategory implements PropertyChangeListener {
     public boolean countdays(Task t) {
 
         int daysBetween;
+        int i = 1;
 
         daysBetween = (int) DateUtils.getDiffInDays(Calendar.getInstance(), t.getStartDate(), false);
 

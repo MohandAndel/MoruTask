@@ -44,7 +44,7 @@ public class testsettings {
         //setting.setDefultTitleofTask("New Task");
         //setting.setRowHigh(30);
         setting.setDateFormat("dd-MMM-yyy");
-        Main.saveSettings();
+        //Main.saveSettings();
     }
 
 }

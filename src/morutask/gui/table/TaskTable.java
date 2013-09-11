@@ -74,15 +74,15 @@ public class TaskTable extends JXTable implements TaskTableView {
         setDefaultEditor(Task.class, tableEditor);
         ViewUtils.getInstance().setTaskTable(this);
 
-        getSelectionModel().addListSelectionListener(new ListSelectionListener() {
-
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
-
-                setRowHeight(tableRowhigh);
-                tableEditor.setEditable(false);
-            }
-        });
+//        getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+//
+//            @Override
+//            public void valueChanged(ListSelectionEvent e) {
+//
+//               setRowHeight(tableRowhigh);
+//               tableEditor.setEditable(false);
+//            }
+//        });
 
 
         addMouseListener(new MouseAdapter() {
@@ -151,7 +151,7 @@ public class TaskTable extends JXTable implements TaskTableView {
             this.getSelectionModel().addSelectionInterval(index, index);
             this.getSelectionModel().setValueIsAdjusting(false);
 
-            this.setRowHeight(index, ViewUtils.getInstance().getTaskEditorPanel().getHeight());
+            this.setRowHeight(index,ViewUtils.getInstance().getTaskEditorPanel().getHeight());
             this.scrollRowToVisible(index);
 
         }

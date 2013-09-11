@@ -38,15 +38,12 @@ import morutask.gui.utils.ComponentFactory;
 import morutask.gui.utils.FormBuildHelper;
 import morutask.gui.utils.ImageUtils;
 import morutask.gui.utils.ViewUtils;
-import morutask.models.Task;
+import morutask.models.*;
 import morutask.models.enums.TaskPriority;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
+import java.awt.event.*;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -66,7 +63,7 @@ public class TaskEditorPanel extends JPanel {
     private JButton OkButton;
     private JButton CancelButton;
     private JPanel panel;
-    private TimerField timerField;
+    private JTextField timerField;
     private ComponentsBar componentsBar;
 
     private FormBuildHelper formBuildHelper;
@@ -74,6 +71,8 @@ public class TaskEditorPanel extends JPanel {
 
     private TaskEditorPanel() {
         componentsBar = ComponentFactory.createComponentsPanel();
+
+
         this.initialize();
     }
 
@@ -102,7 +101,7 @@ public class TaskEditorPanel extends JPanel {
         timeSpinner.setValue(new Date());
         ;
 
-        timerField = new TimerField(false);
+        timerField = new JTextField("Timer",4);//TimerField(false);
 
         OkButton = new JButton("OK");
         OkButton.addActionListener(new ActionListener() {
@@ -123,7 +122,7 @@ public class TaskEditorPanel extends JPanel {
                 task.setNote(NoteArea.getText());
                 task.setStartDate(instance);
                 task.setPriority((TaskPriority) PriorityComboBox.getSelectedItem());
-                task.setTimer(timerField.getTimer());
+                task.setTimer(new morutask.models.Timer(Long.valueOf(timerField.getText())*60));//.getTimer());
                 ViewUtils.getInstance().getTaskEditor().stopEditing();
             }
         });
@@ -135,7 +134,9 @@ public class TaskEditorPanel extends JPanel {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                setValues();
                 ViewUtils.getInstance().getTaskEditor().stopEditing();
+
             }
         });
         JPanel ButtonsPanel = new JPanel(new FlowLayout());
@@ -146,7 +147,7 @@ public class TaskEditorPanel extends JPanel {
         componentsBar.addComponent(dateChooser, "Set Start Date");
         componentsBar.addComponent(timeSpinner, "Set Start Time");
         componentsBar.addComponent(PriorityComboBox, "Set Priority of Task");
-        componentsBar.addComponent(timerField, "Set Timer");
+        componentsBar.addComponent(timerField, "Set Timer in minutes");
 
         componentsBar.addToggleButton(ImageUtils.getImage("alarm.png", 25, 25), null, "set to Enable the Reminder", "reminder", new ItemListener() {
             @Override
@@ -169,7 +170,6 @@ public class TaskEditorPanel extends JPanel {
             }
         });
 
-
         //******
         panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -185,6 +185,7 @@ public class TaskEditorPanel extends JPanel {
     }
 
     private void setValues() {
+        System.out.println("set values");
 
         this.titleField.setText(task.getTitle());
         this.NoteArea.setText(task.getNote());
@@ -192,7 +193,8 @@ public class TaskEditorPanel extends JPanel {
         componentsBar.getToggleButton("complete").setSelected(task.isCompleted());
         componentsBar.getToggleButton("reminder").setSelected(task.hasReminder());
 
-        timerField.setTimer(task.getTimer());
+        //timerField.setTimer(task.getTimer());
+        timerField.setText(String.valueOf(task.getTimer().getTimerinMinute()));
 
         if (task.getStartDate() == null) {
             timeSpinner.setValue(new Date());
@@ -210,6 +212,11 @@ public class TaskEditorPanel extends JPanel {
 
     public void setCurrentTaskToEditor() {
         Task selectedTask = ViewUtils.getInstance().getSelectedTask();
+
+        if(selectedTask.equals(this.task))
+            return;
+
+
         this.task = selectedTask;
         setValues();
     }

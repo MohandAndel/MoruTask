@@ -33,6 +33,7 @@
 package morutask.gui;
 
 import com.toedter.calendar.JDateChooser;
+import morutask.gui.utils.ViewUtils;
 
 import javax.swing.event.PopupMenuEvent;
 import javax.swing.event.PopupMenuListener;
@@ -60,8 +61,9 @@ public class DateChooser extends JDateChooser {
 
             @Override
             public void popupMenuWillBecomeInvisible(PopupMenuEvent e) {
-                //System.out.println("InVisible");
-                DateChooser.this.transferFocus();
+               // System.out.println("InVisible");
+                //DateChooser.this.transferFocus();
+                TaskEditorPanel.getinstance().requestFocus();
             }
 
             @Override

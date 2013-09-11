@@ -47,6 +47,10 @@ public class Timer implements Comparable<Timer> {
         System.out.println("Value ==> " + value);
 		return this.value - second;
 	}
+
+    public long getTimerinMinute() {
+        return this.value / 60;
+    }
 	
 	public void setValue(long value) {
 		this.value = value;

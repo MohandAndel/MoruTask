@@ -34,6 +34,7 @@ package morutask.gui;
 
 import com.leclercb.commons.api.coder.exc.FactoryCoderException;
 import morutask.gui.actions.ActionAddTask;
+import morutask.gui.actions.ActionCheckVersion;
 import morutask.gui.actions.ActionDeleteTask;
 import morutask.gui.actions.ActionReportBug;
 import morutask.gui.list.CategoryList;
@@ -91,7 +92,7 @@ public class MainFrame extends JXFrame {
 
         this.initMenuBar();
 
-        setTitle("MoruTask 0.4 Alpha");
+        setTitle(Constants.TITLE + " " + Constants.getVersion() + " Alpha");//"MoruTask 0.5 Alpha");
 
         addWindowListener(new WindowAdapter() {
             @Override
@@ -102,7 +103,8 @@ public class MainFrame extends JXFrame {
                             , JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new String[]{"Ok", "Exit"}, "Ok");
 
 
-                    Main.saveModels();
+
+                    Main.saveData();
 
                     if (choose == 0) {
                         TrayIconManager.getInstance().fireShowTrayIcon("Main", null);
@@ -110,9 +112,6 @@ public class MainFrame extends JXFrame {
                     } else {
                         System.exit(0);
                     }
-
-                } catch (FileNotFoundException | FactoryCoderException ex) {
-                    Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (AWTException e1) {
                     e1.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
                 }
@@ -196,20 +195,23 @@ public class MainFrame extends JXFrame {
 
         JMenuBar menuBar = new JMenuBar();
         JMenuItem menuItemRB = new JMenuItem("Report Bug");
-        menuItemRB.addActionListener(new ActionReportBug("https://sourceforge.net/p/morutask/bugs/?source=navbar"));
+        menuItemRB.addActionListener(new ActionReportBug(Constants.BUGS_URL));
 
         JMenuItem menuItemFR = new JMenuItem("Report Feature Requests");
-        menuItemFR.addActionListener(new ActionReportBug("https://sourceforge.net/p/morutask/feature-requests/?source=navbar"));
+        menuItemFR.addActionListener(new ActionReportBug(Constants.FEATURE_REQUESTS_URL));
 
         JMenuItem menuItemLC = new JMenuItem("Leave a comment ");
-        menuItemLC.addActionListener(new ActionReportBug("https://sourceforge.net/projects/morutask/reviews/new"));
+        menuItemLC.addActionListener(new ActionReportBug(Constants.REVIEW_URL));
 
+        JMenuItem menuItemUpdate = new JMenuItem("Check for Updates");
+        menuItemUpdate.addActionListener(new ActionCheckVersion(5,5,false));
 
         JMenu menu = new JMenu("About");
 
         menu.add(menuItemRB);
         menu.add(menuItemFR);
         menu.add(menuItemLC);
+        menu.add(menuItemUpdate);
         menuBar.add(menu);
 
         setJMenuBar(menuBar);

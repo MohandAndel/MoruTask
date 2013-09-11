@@ -33,6 +33,7 @@
 package morutask.gui.table;
 
 import morutask.gui.Main;
+import morutask.gui.TaskEditorPanel;
 import morutask.gui.utils.ViewUtils;
 import morutask.models.Task;
 
@@ -63,11 +64,15 @@ public class TableEditor extends AbstractCellEditor implements TableCellEditor {
         this.table = table;
 
         if (isSelected == false) {
+            System.out.println("not selected");
             this.table.setRowHeight(tableRowhigh);
+            setEditable(false);
             return null;
         }
 
-        this.table.setRowHeight(row, ViewUtils.getInstance().getTaskEditorPanel().getHeight());
+        this.table.setRowHeight(row,ViewUtils.getInstance().getTaskEditorPanel().getHeight());
+
+        TaskEditorPanel.getinstance().setCurrentTaskToEditor();
 
         return ViewUtils.getInstance().getTaskEditorPanel();
     }

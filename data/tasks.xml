@@ -100,4 +100,46 @@
     <priority>LOW</priority>
     <note></note>
   </task>
+  <task>
+    <modelid isnew="true">2e4a96d6-1a96-4834-bc52-9bd25d7acc74</modelid>
+    <modelreferenceids class="java.util.Collections$UnmodifiableMap"/>
+    <modelstatus>TO_UPDATE</modelstatus>
+    <modelcreationdate>1378819409603</modelcreationdate>
+    <modelupdatedate>1378819816015</modelupdatedate>
+    <title>test reminder !</title>
+    <order>0</order>
+    <properties/>
+    <completed>true</completed>
+    <completedon>1378819816015</completedon>
+    <startdate>1378819819963</startdate>
+    <startdatereminder>0</startdatereminder>
+    <hasreminder>true</hasreminder>
+    <repeatfrom>DUE_DATE</repeatfrom>
+    <status>NONE</status>
+    <length>0</length>
+    <timer startdate="">0</timer>
+    <priority>LOW</priority>
+    <note></note>
+  </task>
+  <task>
+    <modelid isnew="true">22a34535-9bea-4fcf-a14b-74c60dcb7fae</modelid>
+    <modelreferenceids class="java.util.Collections$UnmodifiableMap"/>
+    <modelstatus>TO_UPDATE</modelstatus>
+    <modelcreationdate>1378819527564</modelcreationdate>
+    <modelupdatedate>1378819580158</modelupdatedate>
+    <title>go to shoppong and buy things for school , and then back home</title>
+    <order>0</order>
+    <properties/>
+    <completed>true</completed>
+    <completedon>1378819580157</completedon>
+    <startdate>1378819560000</startdate>
+    <startdatereminder>0</startdatereminder>
+    <hasreminder>true</hasreminder>
+    <repeatfrom>DUE_DATE</repeatfrom>
+    <status>NONE</status>
+    <length>0</length>
+    <timer startdate="">0</timer>
+    <priority>LOW</priority>
+    <note></note>
+  </task>
 </tasks>

@@ -1,23 +1,23 @@
 /*
- * MoruTask
- * Copyright (c) 2013, Mohand Andel
+ * TaskUnifier
+ * Copyright (c) 2013, Benjamin Leclerc
  * All rights reserved.
  * 
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions
  * are met:
- *
+ * 
  *   - Redistributions of source code must retain the above copyright
  *     notice, this list of conditions and the following disclaimer.
- *
+ * 
  *   - Redistributions in binary form must reproduce the above copyright
  *     notice, this list of conditions and the following disclaimer in the
  *     documentation and/or other materials provided with the distribution.
- *
- *   - Neither the name of MoruTask or the names of its
+ * 
+ *   - Neither the name of TaskUnifier or the names of its
  *     contributors may be used to endorse or promote products derived
  *     from this software without specific prior written permission.
- *
+ * 
  * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS
  * IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
  * THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
@@ -30,47 +30,38 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
  */
-package morutask.gui.list;
+package morutask.gui.actions;
 
-import morutask.gui.list.categoriesList.Category;
-import morutask.gui.list.categoriesList.CompletionCategory;
-import morutask.gui.list.categoriesList.DayCategory;
-import morutask.gui.list.categoriesList.ReminderCategory;
-import morutask.gui.utils.ViewUtils;
-import org.jdesktop.swingx.JXList;
 
-import java.awt.*;
+import morutask.gui.threads.CheckVersionThread;
+import morutask.gui.threads.reminder.Synchronizing;
 
-/**
- * @author mohand
- */
-public class CategoryList extends JXList implements ListCategoryView {
+import javax.swing.*;
+import java.awt.event.ActionEvent;
 
-    public CategoryList() {
-
-        //setSize(100, 100);
-        setPreferredSize(new Dimension(145,100));
-        initCategories();
-
-        setModel(new ModelListCategory());
-        ViewUtils.getInstance().setCategoryList(this);
-    }
-
-    public void initCategories() {
-
-        DayCategory dayCategory = new DayCategory();
-        CompletionCategory completionCategory = new CompletionCategory();
-        ReminderCategory reminderCategory = new ReminderCategory();
-    }
-
-    @Override
-    public Category getSelectedCategory() {
-        return (Category) getSelectedValue();
-    }
-
-    public void fireContentsChanged() {
-        ModelListCategory model = (ModelListCategory) getModel();
-        model.fireContentsChanged();
-
-    }
+public class ActionCheckVersion extends AbstractAction {
+	
+	private boolean silent;
+	
+	public ActionCheckVersion(int width, int height, boolean silent) {
+		
+		this.silent = silent;
+	}
+	
+	@Override
+	public void actionPerformed(ActionEvent event) {
+		ActionCheckVersion.checkVersion(this.silent);
+	}
+	
+	public static void checkVersion(final boolean silent) {
+		if (Synchronizing.getInstance().isSynchronizing()) {
+			if (!silent)
+				Synchronizing.getInstance().showSynchronizingMessage();
+			
+			return;
+		}
+		
+		new CheckVersionThread(silent).start();
+	}
+	
 }
